@@ -46,6 +46,7 @@ router.get('/', async function(req, res, next) {
       receitas: receitas,
       despesas: despesas,
       extrato: extrato,
+      termo_busca: (tipo ? tipo : ""),
       formatarMoeda: (valor) => {
         return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
       },
