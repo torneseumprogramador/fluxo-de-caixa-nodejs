@@ -5,8 +5,21 @@ const Caixa = require('../models/caixa');
 /* GET home page. */
 router.get('/', async function(req, res, next) {
   try {
-    // Aqui você pode utilizar o modelo "Caixa" para obter os dados do banco de dados
-    const extrato = await Caixa.findAll(); // Supondo que você tem um método findAll() definido no modelo Caixa
+    // Obter o parâmetro "tipo" da query string, se presente
+    const tipo = req.query.tipo;
+
+    // Criar um objeto para conter as opções de filtro
+    const filtro = {};
+
+    // Se o parâmetro "tipo" estiver presente na query string, adicionar ao filtro
+    if (tipo) {
+      filtro.tipo = tipo;
+    }
+
+    // Aqui você pode utilizar o modelo "Caixa" para obter os dados do banco de dados com base nas opções de filtro
+    const extrato = await Caixa.findAll({
+      where: filtro
+    });
 
     // Inicializa as variáveis de receitas e despesas
     let receitas = 0;
