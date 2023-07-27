@@ -1,0 +1,54 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.dvCaixas{
+  width: 100%;
+  text-align: center;
+}
+
+.dvCaixas div{
+  display: inline-block;
+  text-align: left;
+  background-color: #cfcfcf;
+  width: 33%;
+  padding: 20px;
+}
+
+.dvCaixas div:nth-child(3){
+  background-color: red;
+}
+
+.dvSerach{
+  margin-top: 20px;
+}
+
+.dvSerach div, .dvSerach form input, .dvSerach form button{
+  display: inline-block;
+}
+
+.dvSerach form input{
+  width: 80%;
+}
+
+.dvSerach form button{
+  width: 19%;
+}
+
+.dvSerach div:nth-child(1){
+  width: 80%;
+}
+
+.dvSerach div:nth-child(2){
+  width: 19%;
+  text-align: right;
+}
+
+.dvTabela{
+  margin-top: 20px;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fluxo de caixa nodejs</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>Fluxo de caixa Node.js</h1>
+    <hr>
+
+    <div class="dvCaixas">
+      <div>
+        <b>Valor total</b><br>
+        <span id="valorTotal"><%= formatarMoeda(valor_total) %></span> <!-- Preenchendo o valor_total formatado -->
+      </div>
+      <div>
+        <b>Receitas</b><br>
+        <span id="receitas"><%= formatarMoeda(receitas) %></span> <!-- Preenchendo as receitas formatadas -->
+      </div>
+      <div>
+        <b>Despesas</b><br>
+        <span id="despesas"><%= formatarMoeda(despesas) %></span> <!-- Preenchendo as despesas formatadas -->
+      </div>
+    </div>
+
+    <div class="dvSerach">
+      <div>
+        <form action="/">
+          <input type="text" placeholder="Digite algo ..." class="form-control" name="tipo">
+          <button type="submit" class="btn btn-primary" >Buscar</button>
+        </form>
+      </div>
+      <div>
+        <a href="/adicionar" class="btn btn-primary">Adicionar</a>
+      </div>
+    </div>
+
+    <div class="dvTabela">
+      <table class="table table-bordered">
+        <thead class="table-light">
+          <tr>
+            <th>Tipo</th>
+            <th>Valor</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (const lancamento of extrato) { %>
+            <tr>
+              <td><%= lancamento.tipo %></td> <!-- Preenchendo o campo 'tipo' do lançamento -->
+              <td><%= formatarMoeda(lancamento.valor) %></td> <!-- Preenchendo o campo 'valor' do lançamento formatado -->
+              <td style="background-color: <%= corStatus(lancamento.status) %>;"><%= formatarStatus(lancamento.status) %></td> <!-- Preenchendo o campo 'status' do lançamento -->
+              <td style="width: 20px;">
+                <a href="/excluir/<%= lancamento.id %>" onclick="return confirm('Confirma?')" class="btn btn-danger">
+                  Excluir
+                </a>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>
