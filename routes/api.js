@@ -13,14 +13,16 @@ router.get('/caixas', async function(req, res, next) {
 
     // Se o parâmetro "tipo" estiver presente na query string, adicionar ao filtro
     if (tipo) {
-      filtro.tipo = tipo;
+      filtro.tipo = {
+        [Op.like]: `%${tipo}%`
+      };
     }
 
     // Aqui você pode utilizar o modelo "Caixa" para obter os dados do banco de dados com base nas opções de filtro
     const extrato = await Caixa.findAll({
       where: filtro
     });
-    
+
     // Inicializa as variáveis de receitas e despesas
     let receitas = 0;
     let despesas = 0;
