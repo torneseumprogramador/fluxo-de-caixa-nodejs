@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Caixa = require('../models/caixa');
+const { Op } = require('sequelize');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
